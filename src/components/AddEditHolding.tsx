@@ -15,8 +15,9 @@ interface AddEditHoldingProps {
 }
 
 const AddEditHolding: React.FC<AddEditHoldingProps> = ({ onClose }) => {
-	const { portfolio, addHolding, editHolding, savePortfolio } =
+	const { portfolio, addHolding, editHolding, savePortfolio, holdingToEdit } =
 		usePortfolioStore();
+
 	const nameRef = useRef<HTMLInputElement>(null);
 	const symbolRef = useRef<HTMLInputElement>(null);
 	const quantityRef = useRef<HTMLInputElement>(null);
@@ -35,6 +36,17 @@ const AddEditHolding: React.FC<AddEditHoldingProps> = ({ onClose }) => {
 			clearData();
 		};
 	}, []);
+
+	useEffect(() => {
+		if (holdingToEdit) {
+			if (nameRef.current) nameRef.current.value = holdingToEdit.name;
+			if (symbolRef.current) symbolRef.current.value = holdingToEdit.symbol;
+			if (quantityRef.current)
+				quantityRef.current.value = holdingToEdit.quantity.toString();
+		} else {
+			clearData();
+		}
+	}, [holdingToEdit]);
 
 	const clearData = () => {
 		if (nameRef.current) nameRef.current.value = '';
@@ -70,7 +82,7 @@ const AddEditHolding: React.FC<AddEditHoldingProps> = ({ onClose }) => {
 		);
 
 		if (isExist) {
-			editHolding({ ...newHolding, quantity: isExist.quantity + quantity });
+			editHolding(newHolding);
 		} else {
 			addHolding(newHolding);
 		}

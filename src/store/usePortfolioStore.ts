@@ -9,18 +9,29 @@ interface Holding {
 
 interface PortfolioState {
 	portfolio: Holding[];
+	holdingToEdit?: Holding;
+	isDrawerOpen: boolean;
+	setDrawerOpen: () => void;
+	prices: { [key: string]: number };
 	addHolding: (holding: Holding) => void;
 	editHolding: (updatedHolding: Holding) => void;
 	deleteHolding: (index: number) => void;
 	loadPortfolio: () => void;
 	savePortfolio: () => void;
+	updatePrice: (symbol: string, price: number) => void;
+	saveHoldingToEdit: (holding: Holding) => void;
 }
 
 const usePortfolioStore = create<PortfolioState>((set, get) => ({
 	portfolio: [],
+	prices: {},
+	holdingToEdit: undefined,
+	isDrawerOpen: false,
+	setDrawerOpen: () => set((state) => ({ isDrawerOpen: !state.isDrawerOpen })),
+	saveHoldingToEdit: (holding: Holding) => set({ holdingToEdit: holding }),
 	addHolding: (holding) =>
 		set((state) => ({ portfolio: [...state.portfolio, holding] })),
-	editHolding: (updatedHolding) =>
+	editHolding: (updatedHolding: Holding) =>
 		set((state) => {
 			const newPortfolio = state.portfolio.filter(
 				(portfo) => portfo.symbol !== updatedHolding.symbol,
@@ -41,6 +52,9 @@ const usePortfolioStore = create<PortfolioState>((set, get) => ({
 	savePortfolio: () => {
 		localStorage.setItem('portfolio', JSON.stringify(get().portfolio));
 	},
+	updatePrice: (symbol, price) =>
+		set((state) => ({
+			prices: { ...state.prices, [symbol]: price },
+		})),
 }));
-
 export default usePortfolioStore;

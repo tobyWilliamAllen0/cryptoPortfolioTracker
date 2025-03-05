@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PortfolioList from './components/PortfolioList';
 import AddEditHolding from './components/AddEditHolding';
 import BottomDrawer from './components/BottomDrawer';
@@ -7,15 +7,41 @@ import Button from './components/Button';
 import './App.css';
 
 const App: React.FC = () => {
-	const { loadPortfolio } = usePortfolioStore();
-	const [isDrawerOpen, setDrawerOpen] = useState(false);
+	const { loadPortfolio, portfolio, updatePrice, isDrawerOpen, setDrawerOpen } =
+		usePortfolioStore();
+
+	const workerRef = useRef<Worker | null>(null);
 
 	useEffect(() => {
 		loadPortfolio();
 	}, [loadPortfolio]);
 
+	useEffect(() => {
+		if (workerRef.current) {
+			workerRef.current.terminate();
+		}
+
+		workerRef.current = new Worker(
+			new URL('./workers/binanceWorker.ts', import.meta.url),
+		);
+
+		workerRef.current.onmessage = (event) => {
+			const { symbol, price } = event.data;
+			updatePrice(symbol, price);
+		};
+		const symbols = portfolio.map((holding) => holding.symbol);
+
+		workerRef.current.postMessage({ type: 'subscribe', symbols });
+
+		return () => {
+			if (workerRef.current) {
+				workerRef.current.terminate();
+			}
+		};
+	}, [portfolio, updatePrice]);
+
 	const toggleDrawer = () => {
-		setDrawerOpen(!isDrawerOpen);
+		setDrawerOpen();
 	};
 
 	return (
