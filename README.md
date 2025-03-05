@@ -68,7 +68,11 @@ crypto-portfolio-tracker/
 ├── src/
 │   ├── components/
 │   │   ├── PortfolioList.tsx     # List view of portfolio holdings
-│   │   └── ...                   # Other components
+│   │   ├── AddEditDrawer.tsx     # Drawer component for adding/editing holdings
+│   │   ├── CryptoForm.tsx        # Form for managing crypto holdings
+│   │   ├── PortfolioSummary.tsx  # Summary of portfolio total value
+│   │   ├── Header.tsx            # Application header with navigation
+│   │   └── PriceDisplay.tsx      # Component for displaying crypto prices
 │   ├── store/
 │   │   └── usePortfolioStore.ts  # State management for the portfolio
 │   ├── utils/
@@ -77,6 +81,7 @@ crypto-portfolio-tracker/
 │   ├── App.tsx
 │   └── index.tsx
 └── README.md
+
 ```
 
 ## Available Scripts
