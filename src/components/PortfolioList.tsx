@@ -2,11 +2,17 @@ import React from 'react';
 import usePortfolioStore from '../store/usePortfolioStore';
 import { formatUSD } from '../utils/formatters';
 import { ensureUSDT } from '../utils/symbolUtils';
-import { Edit2 } from 'iconsax-react';
+import { Edit2, Trash } from 'iconsax-react';
 
 const PortfolioList = () => {
-	const { portfolio, prices, saveHoldingToEdit, setDrawerOpen } =
-		usePortfolioStore();
+	const {
+		portfolio,
+		prices,
+		saveHoldingToEdit,
+		setDrawerOpen,
+		deleteHolding,
+		savePortfolio,
+	} = usePortfolioStore();
 
 	return (
 		<ul>
@@ -34,14 +40,23 @@ const PortfolioList = () => {
 							)}
 						</span>
 					</div>
-					<div
-						className="cursor-pointer"
-						onClick={() => {
-							saveHoldingToEdit(holding);
-							setDrawerOpen();
-						}}
-					>
-						<Edit2 size="24" color="#7e8491" />
+					<div className="cursor-pointer flex flex-col gap-4 items-center justify-center">
+						<Edit2
+							size="24"
+							color="#7e8491"
+							onClick={() => {
+								saveHoldingToEdit(holding);
+								setDrawerOpen();
+							}}
+						/>
+						<Trash
+							size="24"
+							color="#7e8491"
+							onClick={() => {
+								deleteHolding(holding.symbol);
+								savePortfolio();
+							}}
+						/>
 					</div>
 				</li>
 			))}

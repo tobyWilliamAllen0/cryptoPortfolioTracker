@@ -1,70 +1,115 @@
-# Getting Started with Create React App
+# Crypto Portfolio Tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern React application that allows you to track your cryptocurrency investments in real-time. Easily manage your portfolio, view current prices, and monitor the total value of your holdings.
+
+## Features
+
+- 📈 Track multiple cryptocurrencies in one place
+- 💰 View real-time price updates
+- 📊 Calculate total portfolio value
+- ✏️ Add, edit, and delete your crypto holdings
+- 💾 Persistent storage to save your portfolio
+- 📱 Responsive design for desktop and mobile devices
+
+## Technologies Used
+
+- React 
+- TypeScript
+- TailwindCSS for styling
+- Zustand for state management (via usePortfolioStore)
+- Iconsax for UI icons
+
+## Installation
+
+To get started with the Crypto Portfolio Tracker, follow these steps:
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/crypto-portfolio-tracker.git
+
+# Navigate to project directory
+cd crypto-portfolio-tracker
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm start
+```
+
+The application will open in your browser at [http://localhost:3000](http://localhost:3000).
+
+## Usage
+
+### Adding a new holding
+
+1. Click the "Add Holding" button
+2. Enter the cryptocurrency name, symbol, and quantity
+3. Click "Save" to add it to your portfolio
+
+### Editing a holding
+
+1. Find the holding you want to edit in your portfolio list
+2. Click the edit (pencil) icon
+3. Update the details as needed
+4. Click "Save" to update your portfolio
+
+### Deleting a holding
+
+1. Find the holding you want to remove
+2. Click the trash icon
+3. Confirm deletion if prompted
+
+## Project Structure
+
+```
+crypto-portfolio-tracker/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── PortfolioList.tsx     # List view of portfolio holdings
+│   │   └── ...                   # Other components
+│   ├── store/
+│   │   └── usePortfolioStore.ts  # State management for the portfolio
+│   ├── utils/
+│   │   ├── formatters.ts         # Utility for formatting currency values
+│   │   └── symbolUtils.ts        # Utility for handling crypto symbols
+│   ├── App.tsx
+│   └── index.tsx
+└── README.md
+```
 
 ## Available Scripts
-
-In the project directory, you can run:
 
 ### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in the interactive watch mode.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Builds the app for production to the `build` folder.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Contributing
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-### `npm run eject`
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## License
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Acknowledgments
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Create React App](https://github.com/facebook/create-react-app)
+- [Iconsax React](https://github.com/iconsax-react)
+- [TailwindCSS](https://tailwindcss.com/)

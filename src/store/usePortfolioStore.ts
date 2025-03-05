@@ -15,7 +15,7 @@ interface PortfolioState {
 	prices: { [key: string]: number };
 	addHolding: (holding: Holding) => void;
 	editHolding: (updatedHolding: Holding) => void;
-	deleteHolding: (index: number) => void;
+	deleteHolding: (index: string) => void;
 	loadPortfolio: () => void;
 	savePortfolio: () => void;
 	updatePrice: (symbol: string, price: number) => void;
@@ -39,10 +39,12 @@ const usePortfolioStore = create<PortfolioState>((set, get) => ({
 			const portfolio = [...newPortfolio, updatedHolding];
 			return { portfolio };
 		}),
-	deleteHolding: (index) =>
+	deleteHolding: (symbol) =>
 		set((state) => {
-			const portfolio = state.portfolio.filter((_, i) => i !== index);
-			return { portfolio };
+			const newPortfolio = state.portfolio.filter(
+				(portfo) => portfo.symbol !== symbol,
+			);
+			return { portfolio: newPortfolio };
 		}),
 	loadPortfolio: () => {
 		const storedPortfolio =
