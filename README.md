@@ -25,7 +25,7 @@ To get started with the Crypto Portfolio Tracker, follow these steps:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/crypto-portfolio-tracker.git
+git clone https://github.com/tobyWilliamAllen0/cryptoPortfolioTracker.git
 
 # Navigate to project directory
 cd crypto-portfolio-tracker
